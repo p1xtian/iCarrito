@@ -1,0 +1,7 @@
+I"o(function() {
+  $('#select_cliente').change(function() {
+    console.log('cambio');
+  });
+
+}).call(this);
+:ET

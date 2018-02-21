@@ -1,0 +1,7 @@
+I"“(function() {
+  $(document).on("ajax:success", "form#invoicedetail-form", function(ev, data) {
+    return console.log(data);
+  });
+
+}).call(this);
+:ET

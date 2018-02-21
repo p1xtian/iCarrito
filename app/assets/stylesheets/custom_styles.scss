@@ -1,0 +1,79 @@
+.app{
+	font-size: 12px;
+}
+
+.app a:hover {
+    color: #0056b3;
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.app a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+.app a.btn:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    text-decoration: none;
+}
+
+
+
+.app a.btn {
+   	color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.app a.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.app a.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.app .table{
+    padding: 1rem;
+    margin: 1rem -15px 0;
+    border: solid #f7f7f9;
+    border-width: .2rem 0 0;
+}
+
+.app .fa:before{
+	margin-right: 5px;
+}
+.app .fa:before{
+    margin-left: 10px;
+}
+
+.app .bd-title {
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-weight: 300;
+}
+
+.app  .dataTables_wrapper .row{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.app .dataTables_wrapper.form-inline{
+    display: flex;
+ 
+    flex-flow: nowrap;
+    flex-direction: column;
+}
+
+.app  .dataTables_wrapper input, .app  .dataTables_wrapper select, .app  .dataTables_wrapper li{
+    margin: 5px;
+}

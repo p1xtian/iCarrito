@@ -1,0 +1,10 @@
+I"þ(function() {
+  $(document).ready(function() {
+    $('select[name="invoice[name]"]').on('change', function(evt) {
+      console.log($(this).find(':selected').val());
+      console.log($(this).find(':selected').data('uid'));
+    });
+  });
+
+}).call(this);
+:ET

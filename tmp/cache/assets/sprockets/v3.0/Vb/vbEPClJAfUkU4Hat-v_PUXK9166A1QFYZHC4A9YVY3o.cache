@@ -1,0 +1,7 @@
+I"|(function() {
+  $('select[name="invoice[name]"]').change(function() {
+    console.log('cambio');
+  });
+
+}).call(this);
+:ET

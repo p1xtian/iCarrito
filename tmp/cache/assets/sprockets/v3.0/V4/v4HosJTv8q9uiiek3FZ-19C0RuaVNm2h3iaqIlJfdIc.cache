@@ -1,0 +1,10 @@
+I"Ù(function() {
+  $(document).on("ajax:success", "form#invoicedetail-form", function(ev, data) {
+    console.log(data);
+    return $("#invoicedetail_sku").val(function() {
+      return "";
+    });
+  });
+
+}).call(this);
+:ET

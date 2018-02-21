@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-md-4">
+    
+<%= form_with(model: invoicedetail, remote: true, html: {id: "invoicedetail-form", :'data-type' => "json"} ) do |form| %>
+  <% if invoicedetail.errors.any? %>
+	<div id="error_explanation">
+	  <h2><%= pluralize(invoicedetail.errors.count, "error") %> prohibited this invoicedetail from being saved:</h2>
+
+	  <ul>
+	  <% invoicedetail.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	  </ul>
+	</div>
+  <% end %>
+  <% @invoice = Invoice.find(params[:invoice_id])%>
+  <div class="form-group">
+	<%= form.label :invoice_id %>
+	<%= form.text_field :invoice_id, id: :invoicedetail_invoice_id, value: @invoice.id, :readonly => true, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+	<%= form.label 'Seleccionar Producto' %>
+	
+	<%= form.select(:fakename, options_for_select(get_products.map{ |p| [p.first, p.last, {'data-sku'=>Product.find(p.last).sku, 'data-price'=>Product.find(p.last).price, 'data-name'=>p.first}] }), {}, {required: 'true', autofocus: 'true', class: 'form-control'}) %>
+  </div>
+  <div class="row">
+  	
+	  <div class="col">	  	
+		  <div class="form-group">
+			<%= form.label :sku %>
+			<%= form.text_field :sku, id: :invoicedetail_sku, :readonly => true, :class => "form-control" %>
+		  </div>
+	  </div>
+	  <div class="col">
+		  <div class="form-group">
+			<%= form.label :price %>
+			<%= form.number_field :price, id: :invoicedetail_price, :readonly => true, :class => "form-control" %>
+		  </div>
+	  </div>
+	  <div hidden>
+			<div class="form-group">
+			<%= form.label :name %>
+			<%= form.text_field :name, id: :invoicedetail_name, :class => "form-control", :readonly => true %>
+		  	</div>
+	  </div>
+  </div>
+    <div class="row">
+		  <div class="col">
+				<div class="form-group">
+				<%= form.label :quantity %>
+				<%= form.number_field :quantity, id: :invoicedetail_quantity, :class => "form-control" %>
+			  	</div>
+		  </div>
+		  <div class="col">
+			  <div class="form-group">
+				<%= form.label :total %>
+				<%= form.number_field :total, id: :invoicedetail_total, :readonly => true, :class => "form-control" %>
+			  </div>
+		  </div>
+  </div>
+
+  <div class="actions">
+  			<%= form.submit "Agregar" , :class => 'btn btn-primary' %>
+  </div>
+
+  <div class="send">
+
+	<%= link_to 'Emitir Comprobante', invoice_path(@invoice.id), :class => 'btn btn-primary' %>
+
+  </div>
+<% end %>
+
+  </div>
+  <div class="col-md-8">
+  	<h4>Detalles</h4>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Invoice</th>
+      <th>Sku</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+
+
+<% 
+
+%>
+  <tbody id="invoicedetail_table">
+    <% Invoicedetail.where(invoice: @invoice.id).each do |invoicedetail| %>
+      <tr>
+        <td><%= invoicedetail.invoice_id %></td>
+        <td><%= invoicedetail.sku %></td>
+        <td><%= invoicedetail.name %></td>
+        <td><%= invoicedetail.quantity %></td>
+        <td><%= number_to_currency(invoicedetail.price, unit: "S/ ", separator: ",", delimiter: "") %></td>
+        <td><%= number_to_currency(invoicedetail.total, unit: "S/ ", separator: ",", delimiter: "") %></td>
+        <td><%= link_to 'Remover', invoicedetail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+    <% end %>
+      </tbody>
+</table>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Productos</h1>
+
+
+
+
+<table class="table table-striped table-bordered" id="datatable">
+  <thead>
+    <tr>
+      <th scope="col">SKU</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">PRECIO</th>
+      <th scope="col">STOCK</th>
+      <th scope="col">ACTIVO</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.sku %></td>
+        <td><%= product.name %></td>
+        <td><%= number_to_currency(product.price, unit: "S/ ", separator: ",", delimiter: "") %></td>
+        <td><%= product.stock %></td>
+        <td><%= case product.active
+                when true then "SI"
+                else "NO"
+                  end
+         %></td>
+        <td><%= link_to 'Mostrar', product, :class => 'fa fa-eye'  %>
+        <%= link_to 'Editar', edit_product_path(product), :class => 'fa fa-edit'  %>
+        <%= link_to 'Borrar', product, method: :delete, data: { confirm: '¿Esta seguro?' }, :class => 'fa fa-remove'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Producto', new_product_path %>

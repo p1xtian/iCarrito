@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>
+        iCarrito Peru SAC <br></br>
+        AV. Primavera 1234<br></br> SURCO - LIMA - LIMA</th>
+      <th>
+        <center><%=if @invoice.typedoc == 1 then "BOLETA DE VENTA" else "FACTURA DE VENTA" end %></center> <br></br>
+        <center><%="20123456789" %></center>
+        <center><%= @invoice.folio + "-" + @invoice.correlative %></center>
+
+      </th>
+    </tr>
+  </thead>
+</table>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>
+        Fecha de Emision  : <%= @invoice.date %> <br></br>
+        Cliente           : <%= @invoice.name %><br></br>
+        RUC               : <%= @invoice.uid %><br></br>
+        
+
+      </th>
+          </tr>
+  </thead>
+</table>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>PRODUCTO</th>
+      <th>CANTIDAD</th>
+      <th>PRECIO</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+
+
+<% 
+
+%>
+  <tbody id="invoicedetail_table">
+    <% Invoicedetail.where(invoice: @invoice.id).each do |invoicedetail| %>
+      <tr>
+        <td><%= invoicedetail.sku %></td>
+        <td><%= invoicedetail.name %></td>
+        <td><%= invoicedetail.quantity %></td>
+        <td><%= number_to_currency(invoicedetail.price, unit: "S/ ", separator: ",", delimiter: "") %></td>
+        <td><%= number_to_currency(invoicedetail.total, unit: "S/ ", separator: ",", delimiter: "") %></td>
+              </tr>
+    <% end %>
+          <tr>
+            
+        <td><%= ""%></td>
+        <td><%= "" %></td>
+        <td><%= "" %></td>
+        <td><b><%= "SUBTOTAL" %></b></td>
+        <td><%= number_to_currency(@invoice.netsales, unit: "S/ ", separator: ",", delimiter: "") %></td>
+              </tr>
+                        <tr>
+        <td><%= ""%></td>
+        <td><%= "" %></td>
+        <td><%= "" %></td>
+        <td><b><%= "IGV" %></b></td>
+        <td><%= number_to_currency(@invoice.taxes, unit: "S/ ", separator: ",", delimiter: "") %></td>
+              </tr>
+                        <tr>
+        <td><%= ""%></td>
+        <td><%= "" %></td>
+        <td><%= "" %></td>
+        <td><b><%= "TOTAL" %></b></td>
+        <td><%= number_to_currency(@invoice.grosssales, unit: "S/ ", separator: ",", delimiter: "") %></td>
+
+              </tr>
+      </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<%= link_to 'Back', invoices_path %>

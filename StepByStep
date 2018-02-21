@@ -1,0 +1,50 @@
+##SCAFFOLD
+
+rails new icarrito
+rails generate scaffold homepage
+rails generate scaffold product sku:string name:string price:float stock:integer active:boolean
+rails generate scaffold inventory
+rails generate scaffold client uid:string name:string address:string telephone:string active:boolean
+rails generate scaffold invoice date:date typedoc:integer folio:string correlative:string uid:string name:string netsales:float taxes:float grosssales:float void:boolean
+rails generate scaffold invoicedetail invoice:references sku:string name:string quantity:float price:float total:float
+
+## GEMS
+echo "gem 'devise'" >> Gemfile    # Or edit Gemfile and add line: gem 'devise'
+bundle install                    # Fetch and install the gems
+rails generate devise:install     # Creates config file, etc.
+rails generate devise user        # Create model class, routes, etc.
+rake db:migrate                   # Create user table
+rails generate devise:views users # Creates (minimal) views
+
+
+## ROUTES
+root "homepages#index"
+
+## DB
+rake routes
+rake db:create
+rake db:migrate
+rake db:seed
+
+## BORRAR ACCIONES
+rake db:rollback
+rails destroy scaffold inventory
+
+
+## SEED
+db/seed.rb
+
+Product.create(sku:'APPLE0001', name: 'iPhone 4 16GB', price: 1000.00, stock:10, active: 1)
+Product.create(sku:'APPLE0002', name: 'iPhone 5 16GB', price: 1500.00, stock:0, active: 0)
+Product.create(sku:'APPLE0003', name: 'iPhone 6 16GB', price: 2399.00, stock:0, active: 0)
+Product.create(sku:'APPLE0004', name: 'iPhone 7 32GB', price: 3000.00, stock:10, active: 1)
+Product.create(sku:'SAM0001', name: 'Galaxy S4 16GB', price: 1000.00, stock:10, active: 1)
+Product.create(sku:'SAM0002', name: 'Galaxy S5 16GB', price: 1500.00, stock:10, active: 0)
+Product.create(sku:'SAM0003', name: 'Galaxy S6 16GB', price: 2399.00, stock:10, active: 0)
+Product.create(sku:'SAM0004', name: 'Galaxy S7 32GB', price: 3000.00, stock:0, active: 0)
+Client.create(uid:'20537072891',name:'GRUPO IPSEC SAC',address:'SAN MIGUEL',telephone:'2889995',active: 0)
+Client.create(uid:'20298674611',name:'FRANQUICIAS ALIMENTARIAS SA',address:'MIRAFLORES',telephone:'6106900',active: 1)
+Client.create(uid:'10431936858',name:'CHRISTIAN ENRIQUE MERCADO JUSTO',address:'SAN MIGUEL',telephone:'992126211',active: 1)
+,
+
+

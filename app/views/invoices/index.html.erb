@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Facturador</h1>
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Typedoc</th>
+      <th>Folio</th>
+      <th>Correlative</th>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Netsales</th>
+      <th>Taxes</th>
+      <th>Grosssales</th>
+      <th>Void</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.date %></td>
+        <td><%= invoice.typedoc %></td>
+        <td><%= invoice.folio %></td>
+        <td><%= invoice.correlative %></td>
+        <td><%= invoice.uid %></td>
+        <td><%= invoice.name %></td>
+        <td><%= invoice.netsales %></td>
+        <td><%= invoice.taxes %></td>
+        <td><%= invoice.grosssales %></td>
+        <td><%= invoice.void %></td>
+        <td><%= link_to 'Show', invoice %></td>
+        <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+        <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+-->
+<%= link_to 'Facturar', new_invoice_path %>
+
+

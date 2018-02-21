@@ -1,0 +1,15 @@
+I"›(function() {
+  $(document).ready(function() {
+    $('select[name="invoice[name]"]').on('change', function(evt) {
+      $('#invoice_uid').val($(this).find(':selected').data('uid'));
+    });
+  });
+
+  $(document).on('turbolinks:load', function() {
+    $('select[name="invoice[name]"]').on('change', function(evt) {
+      $('#invoice_uid').val($(this).find(':selected').data('uid'));
+    });
+  });
+
+}).call(this);
+:ET

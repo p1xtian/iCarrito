@@ -1,0 +1,69 @@
+<%= form_with(model: invoice, remote: true) do |form| %>
+  <% if invoice.errors.any? %>
+	<div id="error_explanation">
+	  <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+	  <ul>
+	  <% invoice.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	  </ul>
+	</div>
+  <% end %>
+
+
+ <table>
+  <tr>
+		<th>Tipo de comprobante</th>
+	  </tr>
+  <tr>
+ 
+	<td>  
+	  <div class="field">
+	  	    <!--CHRISTIAN MERCADO -->
+	<%= form.hidden_field :date,   value: DateTime.now.to_date,  :class => 'text_field', :readonly => true %>
+  <div class="field">
+    <%= form.label :Boleta %>
+    <%= form.radio_button :typedoc, 1, :checked => true ,  :class => 'radio_button', :readonly => true %>
+    <%= form.label :Factura %>
+    <%= form.radio_button :typedoc, 2,  :class => 'radio_button', :readonly => true %>
+  </div>
+ 	
+  </div>
+</td>
+	<td>
+			</td>
+	<td>
+		<%= form.text_field :uid,  :class => 'text_field', :hidden => true, :id => 'invoice_uid' %>
+	  <div class="field">
+	<%  
+		last = Invoice.last
+		folio = last.folio
+		correlative = last.correlative.to_i+1
+	%>
+	
+	
+
+  </div>
+</td>
+  </tr>
+</table>
+
+<th>Cliente</th>
+<div class="field">
+			<%= form.select(:name)  do %>
+			<% get_clients.each do |c| -%>
+				<% client = Client.find(c.last)  %>
+			    	<%= content_tag(:option, client.name, value: client.name, data: { uid: client.uid } ) %>
+			  	<% end %>
+			<% end %>
+	  	</div>	  
+
+  <div class="actions">
+	<%= form.submit :Facturar %>
+  </div>  
+
+</form> 
+
+
+<% end %>

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Inventario</h1>
+
+<table class="table table-striped table-bordered" id="datatable">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Nombre</th>
+      <th>STOCK</th>
+    <!--  <th scope="col">Acciones</th>-->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.sku %></td>
+        <td><%= product.name %></td>
+        <td><%= product.stock %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
